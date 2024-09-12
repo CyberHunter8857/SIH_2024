@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Healthcare Support</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Basic reset */
+        body, h1, h2, p, button {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Body styling */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            padding: 20px;
+        }
+
+        /* Container styling */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Header styling */
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #2c3e50;
+        }
+
+        /* Block container styling */
+        .block-container {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        /* Individual block styling */
+        .block {
+            flex: 1;
+            background: #eaf2f8;
+            border: 1px solid #d1e0e0;
+            border-radius: 8px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            transition: background 0.3s ease;
+        }
+
+        .block:hover {
+            background: #d1e0e0;
+        }
+
+        /* Heading styling */
+        .block h2 {
+            margin-bottom: 15px;
+            color: #3498db;
+        }
+
+        /* Paragraph styling */
+        .block p {
+            margin-bottom: 20px;
+            color: #555;
+        }
+
+        /* Button styling */
+        .block button {
+            background-color: #3498db;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+
+        .block button:hover {
+            background-color: #2980b9;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Healthcare Support</h1>
+        <div class="block-container">
+            <div class="block" id="admit-patient">
+                <h2>Admit a Patient</h2>
+                <p>Start the admission process for a patient by filling out the required forms and visiting the nearest OPD.</p>
+                <button onclick="window.location.href='/admit_patient/HospitalQueuingSystem.html'">Admit Now</button>
+            </div>
+            <div class="block" id="know-more">
+                <h2>Know More About Your Health</h2>
+                <p>Get valuable information on various health topics and resources to manage your well-being.</p>
+                <button onclick="window.location.href='/about_health/health-resources.html'">Learn More</button>
+            </div>
+            <div class="block" id="find-doctor">
+                <h2>Find Doctor Near Me</h2>
+                <p>Locate nearby doctors based on your specialty needs and schedule appointments directly.</p>
+                <button onclick="window.location.href='/find_doctor/find-doctor.html'">Find a Doctor</button>
+            </div>
+        </div>
+    </div>
+    <!-- <div class="chatbot"> -->
+        <div class="chat-header" onclick="toggleChat()">
+            <i class="fas fa-robot"></i>
+        </div>
+        <div class="chat-body" id="chatBody">
+            <div class="messages" id="messages">
+                <!-- Messages will appear here -->
+            </div>
+            <div class="chat-input">
+                <input type="text" id="userInput" placeholder="Type your message..." onkeydown="checkEnter(event)">
+                <button onclick="sendMessage()">Send</button>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+    <script>
+        window.watsonAssistantChatOptions = {
+            integrationID: "2b801c3d-a628-4128-ba02-8bdb14b0ba07", // The ID of this integration.
+            region: "us-south", // The region your integration is hosted in.
+            serviceInstanceID: "c2cdad09-2f6c-43df-acd1-b0fde01e7e37", // The ID of your service instance.
+            onLoad: async (instance) => { await instance.render(); }
+        };
+        setTimeout(function(){
+            const t=document.createElement('script');
+            t.src="https://web-chat.global.assistant.watson.appdomain.cloud/versions/" + (window.watsonAssistantChatOptions.clientVersion || 'latest') + "/WatsonAssistantChatEntry.js";
+            document.head.appendChild(t);
+        });
+
+        function openChatbot() {
+            window.watsonAssistantChatOptions.onLoad(window.watsonAssistantChatOptions);
+        }
+    </script>
+</body>
+</html>
